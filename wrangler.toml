@@ -1,0 +1,5 @@
+name = "iw99-ui-assets"
+compatibility_date = "2026-08-29"
+
+[assets]
+directory = "./"
