@@ -32,24 +32,32 @@ repo). Do not rename, do not flatten folders, do not change case, even if a
 name looks wrong to you (see the `note` column — a couple of names are
 flagged as placeholder/unconfirmed on purpose, leave them as given).
 
-## 4. Git workflow — read this carefully, this is a production-adjacent repo
+## 4. Git workflow
 
-- Clone `ccorryxx-bot/iw99-ui-assets`.
-- Create a **new branch** off `main`, e.g. `agent/imagekit-migration`.
-  **Never commit directly to `main`.**
-- Add only the 142 files described above, each at its exact `new_path`. Do
-  not modify, delete, or move any existing file (`wrangler.toml`,
-  `README.md`, `MIGRATION_MAP.csv`, `.gitignore`, etc.) — new files only.
-- Commit normally (no `--amend`), push the branch, **open a pull request**
-  into `main`. **Do not merge the PR.** The repo owner reviews and merges
-  it manually.
-- **Never force-push** (`git push --force` / `-f`), never rewrite history
-  (`rebase -i`, `filter-branch`), never delete branches other than your own
-  working branch.
-- This repo is wired to auto-deploy to a live Cloudflare Worker on push to
-  `main`. Because you're only ever pushing to a feature branch and opening
-  a PR, nothing you do can reach production without a human merging it —
-  stay on that branch/PR workflow and that safety holds automatically.
+The branch + PR flow above was right for that one-time 142-file migration
+(big batch, needed a human review pass before it hit a live Worker for the
+first time). For routine day-to-day asset work after that — new icons,
+adding/replacing a file in an existing category, that kind of thing —
+pushing straight to `main` is fine. This repo auto-deploys to the live
+Cloudflare Worker on push to `main`, so a normal commit here goes live
+within minutes; that's expected, not a risk to route around.
+
+When pushing directly to `main`:
+- Write a clear commit message: what was added/changed and which
+  component/page in the iW99 app it's for.
+- Only touch the files the task actually calls for — don't rename, move,
+  or delete existing assets as a side effect.
+- Keep following the `.webp` conversion rule from section 2 (convert
+  png/jpg/avif on the way in, never re-encode an existing gif or webp
+  source).
+
+Still avoid, always:
+- **Never force-push** (`git push --force` / `-f`).
+- **Never rewrite history** (`rebase -i`, `filter-branch`).
+
+For a large batch import (a whole new provider's icon set, another
+migration-sized job) or anything genuinely unclear, branch + PR is still
+the safer call — use judgment.
 
 ## 5. If anything is ambiguous or a download fails
 
