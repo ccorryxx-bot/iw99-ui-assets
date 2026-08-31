@@ -27,6 +27,9 @@ ui/
   social/        5 files  — footer/account social icons
   spinwheel/     3 files  — spin wheel modal graphics
   account/       5 files  — account page quick-action icons
+  cs/            1 file   — default customer-service agent avatar photo
+    (used for the 24/7 support icon + agent cards; admin-configurable via
+    cs_agent_avatar_url in system_settings, this is the fallback)
   badge/         1 file   — animated "hot" badge overlay (GIF, do not touch)
   promo/         6 files  — promotions page / daily sign-in cards
   brand/         3 files  — site logo (default, agent dashboard, sidebar)
@@ -49,9 +52,14 @@ component(s) use it.
 - `ui/provider/UNKNOWN-license-badge-5.webp` — file is real and in use
   (HomePage.vue footer strip) but nothing in the code identifies which
   provider/license it is. Rename after a visual check.
-- `ui/social/messaging-icon.webp` — same source file is used as "WA"
-  (WhatsApp) in one place and "Viber" in another. Likely a copy-paste
-  mismatch in the app code, not an asset problem — flagged for the app repo,
+- `ui/social/messaging-icon.webp` was the placeholder name during migration; confirmed
+  via visual check that this file is the Viber logo, so it now lives at
+  `ui/social/viber-icon.webp` (see MIGRATION_MAP.csv note). Some app-code
+  references still point at the old `messaging-icon.webp` path (404 today,
+  silently hidden by onError handlers) — HomePage.vue footer/social row
+  (alt="Viber", 2 spots) and AccountPage.vue profile socials (alt="WA",
+  1 spot). The Viber ones should switch to `viber-icon.webp`; the WA one
+  has no dedicated WhatsApp asset in this repo — flagged for the app repo,
   not fixed here.
 - Several source files are `.avif`, which the original conversion rule
   (png/jpg → webp, gif/webp → keep) didn't cover. Defaulted to
