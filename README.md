@@ -54,13 +54,13 @@ component(s) use it.
   provider/license it is. Rename after a visual check.
 - `ui/social/messaging-icon.webp` was the placeholder name during migration; confirmed
   via visual check that this file is the Viber logo, so it now lives at
-  `ui/social/viber-icon.webp` (see MIGRATION_MAP.csv note). Some app-code
-  references still point at the old `messaging-icon.webp` path (404 today,
-  silently hidden by onError handlers) — HomePage.vue footer/social row
-  (alt="Viber", 2 spots) and AccountPage.vue profile socials (alt="WA",
-  1 spot). The Viber ones should switch to `viber-icon.webp`; the WA one
-  has no dedicated WhatsApp asset in this repo — flagged for the app repo,
-  not fixed here.
+  `ui/social/viber-icon.webp`. The old `messaging-icon.webp` path 404s —
+  HomePage.vue's two Viber-labeled refs and iW99's app repo have both been
+  fixed to use `viber-icon.webp` (see iW99 repo history). AccountPage.vue's
+  "WA" (WhatsApp) icon pointed at the same dead path with no matching asset
+  here — resolved by adding `ui/social/whatsapp-icon.webp` (owner-supplied,
+  already a static single-frame webp, no re-encode needed beyond stripping
+  the embedded ICC profile).
 - Several source files are `.avif`, which the original conversion rule
   (png/jpg → webp, gif/webp → keep) didn't cover. Defaulted to
   convert-to-webp for consistency with everything else. Flag if that's wrong
