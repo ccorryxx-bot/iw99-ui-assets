@@ -19,15 +19,16 @@ ui/
   vip/          51 files  — VIP tier badges, 0.webp .. 50.webp
   avatar/       40 files  — account avatar picker, 1.webp .. 40.webp
   agent/         5 files  — agent-referral avatar picker
-  provider/      7 files  — game provider brand logos (pp/jili/jdb/pg) + license
-                            badges (UK Gambling Commission, PAGCOR, MGA)
+  provider/      9 files  — game provider brand logos (pp/jili/jdb/pg/tada-gaming +
+                            2 unidentified) + license badges (UK Gambling Commission,
+                            PAGCOR, MGA)
   category/      6 files  — home page category filter icons
   payment/       4 files  — deposit/withdraw method icons
   fab/           4 files  — home page floating action buttons
   banner/        3 files  — home page banner carousel
-  social/        8 files  — footer/account social icons (twitter, facebook,
+  social/        9 files  — footer/account social icons (twitter, facebook,
                             instagram, telegram, viber, whatsapp, youtube,
-                            18+ age badge)
+                            tiktok, 18+ age badge)
   spinwheel/     3 files  — spin wheel modal graphics
   account/       5 files  — account page quick-action icons
   cs/            1 file   — default customer-service agent avatar photo
@@ -55,6 +56,12 @@ component(s) use it.
 - `ui/provider/UNKNOWN-license-badge-5.webp` — file is real and in use
   (HomePage.vue footer strip) but nothing in the code identifies which
   provider/license it is. Rename after a visual check.
+- `ui/provider/UNKNOWN-provider-logo-1.webp` — monochrome black/white swoosh
+  mark, owner-supplied. In use (HomePage.vue footer provider strip). Rename
+  once the owner identifies the provider.
+- `ui/provider/UNKNOWN-provider-logo-2.webp` — green/teal "M" wordmark,
+  owner-supplied. In use (HomePage.vue footer provider strip). Rename once
+  the owner identifies the provider.
 - `ui/social/messaging-icon.webp` was the placeholder name during migration; confirmed
   via visual check that this file is the Viber logo, so it now lives at
   `ui/social/viber-icon.webp`. The old `messaging-icon.webp` path 404s —
